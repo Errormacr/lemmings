@@ -49,7 +49,7 @@ class Gameboard:
         for platform in platforms:
             x_in_platform = platforms[row_index].x >= platform.x and platforms[row_index].x <= platform.x + platform.width
             y_in_platform = platforms[row_index].y == platform.y
-            print(x_in_platform," x ",gate_x,"/",y_in_platform," y ",gate_y)
+            print(x_in_platform," x ","/",y_in_platform," y ")
             print(platforms[row_index].x,"/",platforms[row_index].y)
             if (x_in_platform and y_in_platform):
                 row_index-=1
