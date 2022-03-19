@@ -5,7 +5,7 @@ from .Player import Player
 one = 1
 y_now = 0
 class Lemming:
-    def __init__(self, x: int, y: int, platforms: list):
+    def __init__(self, x: int, y: int, platforms: list): #инициализация
         self.x = x
         self.y = y
         self.width = 256
@@ -16,7 +16,7 @@ class Lemming:
         self.counter = [0 for i in range(self.lemmings_num)]
         self.platforms = platforms
         
-    def create_players(self):
+    def create_players(self):# создание курсора
         
         players = []
 
@@ -26,10 +26,10 @@ class Lemming:
 
         return players
     
-    def before_start(self):
+    def before_start(self): #до начала
         return self.players
 
-    def update_player(self, tools):
+    def update_player(self, tools):#
     
    
         umbrellas = tools["umbrella"]  
@@ -99,7 +99,8 @@ class Lemming:
                     if is_touching_umbrella:
                         self.players[i].umbrella = True
                         self.players[i].img = (0, 0, 48, 16, 24, 0)
-                
+                if not is_falling:
+                    one = 1
            
                 for platform in self.platforms:
                     if self.players[i].y == platform.y:
@@ -109,13 +110,10 @@ class Lemming:
                         player_in_platform = self.players[i].x >= platform.x and (
                                              self.players[i].x <= platform_x_f)
                         #Сделать падение с 20 пиксилей не смертельным
+                        print(y_now,self.players[i].y)
                         if is_falling and player_in_platform and self.players[i].umbrella == False:
-                            if self.players[i].y-y_now >16:
+                            if self.players[i].y-y_now >20:
                                 players_to_remove.append(i)
-                            else:
-                                one = 1
-                        else:
-                            one = 1
 
 
            
