@@ -27,7 +27,6 @@ class Gameboard:
         self.Platform = Platforms()
         self.platforms = self.Platform.generate_platforms()
 
-
     def create_grid(self):  # создание игрового поля
 
         grid = []
@@ -55,12 +54,12 @@ class Gameboard:
 
         for platform in platforms:
             x_in_platform = platform.x <= platforms[row_index].x <= platform.x + platform.width
-            y_in_platform = platform.y-16<platforms[row_index].y < platform.y+16
+            y_in_platform = platform.y - 16 < platforms[row_index].y < platform.y + 16
             if x_in_platform and y_in_platform:
-                
-                        row_index -= 1
-                        while row_index == entry_gate_index:
-                            row_index = randint(0, self.Constants.platforms_num - 1)
+                row_index -= 1
+                while row_index == entry_gate_index:
+                    row_index = randint(0, self.Constants.platforms_num - 1)
+
 
         gate_y = platforms[row_index].y
 

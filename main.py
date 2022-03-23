@@ -73,6 +73,7 @@ class App:
         global audnorepeat
         if pyxel.btnp(pyxel.KEY_SPACE):
             # начало игры
+
             self.start = True
         elif pyxel.btnp(pyxel.KEY_O):
             self.start = False
@@ -217,7 +218,6 @@ class App:
         if self.start and not self.game_over[0]:  # если игра начата
 
             lemmings = self.Lemming.update_player(self.tools)
-
             for i in range(len(lemmings)):  # проверка состояния леммингов, перераспределение при необходимости
                 if (lemmings[i].x == self.exit_gate.x and
                         lemmings[i].y == self.exit_gate.y and
