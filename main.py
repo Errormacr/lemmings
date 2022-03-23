@@ -78,6 +78,8 @@ class App:
         elif pyxel.btnp(pyxel.KEY_O):
             self.start = False
             audnorepeat = 1
+            pygame.mixer.pause()
+            pygame.mixer.Sound('fon.wav').play(0)
             self.game_over[0] = False
             self.game_over[1] = ""
             # объявление ворот входа выхода
