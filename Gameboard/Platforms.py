@@ -1,4 +1,3 @@
-import pyxel
 from random import randint
 
 from .Constants import Constants

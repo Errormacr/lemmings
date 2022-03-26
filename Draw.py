@@ -125,18 +125,18 @@ class Draw:
             for left_s in tools["left_s"]:
                 pyxel.blt(left_s[0], left_s[1], *left_s[2])
 
-        if start == False:
+        if not start:
             pyxel.rect(scoreboard.x, scoreboard.y,
                        scoreboard.width, scoreboard.height,
                        self.WHITE)
             pyxel.text(90, 15, "Press SPACE to start!", self.BLACK)
 
-        if game_over_msg != None:
+        if game_over_msg is not None:
             pyxel.rect(0, 0, self.width, self.height, self.WHITE)
 
             if game_over_msg == "win":
                 pyxel.text(110, 120, "CONGRATULATIONS!", self.BLACK)
-                pyxel.text(93, 140, "Press O to restart", self.BLACK)
+                pyxel.text(105, 140, "Press O to restart", self.BLACK)
             elif game_over_msg == "lose":
                 pyxel.text(93, 140, "Press O to restart", self.BLACK)
                 pyxel.text(110, 120, "GAME OVER", self.BLACK)
