@@ -15,11 +15,11 @@ class Gameboard:
         self.Platform = Platforms()
         self.platforms = self.Platform.generate_platforms()
 
-    def is_inside_platform(x: int, y: int, platforms: list):  # проверка на плотформу
+    def is_inside_platform(self: int, y: int, platforms: list):  # проверка на плотформу
         is_inside = False
 
         for platform in platforms:
-            x_in_platform = platform.x <= x <= platform.x + platform.width
+            x_in_platform = platform.x <= self <= platform.x + platform.width
             y_in_platform = y == platform.y
             if x_in_platform and y_in_platform:
                 is_inside = True

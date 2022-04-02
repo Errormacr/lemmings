@@ -8,7 +8,8 @@ from Tools import Tools
 from Scoreboard import Scoreboard
 
 # переменная проверки проигрыша или победы для звуки
-audnorepeat = 1
+audnorepeat, a = 1, 0
+pasha = ""
 pygame.mixer.init()
 pygame.mixer.Sound('fon.wav').play(0)
 
@@ -70,11 +71,20 @@ class App:
 
     def interaction(self):
         # управление кнопками
-        global audnorepeat
+        global audnorepeat, pasha, a
+        print(pasha)
+        if pasha not in "UUDDLRLRBA":
+            pasha = ""
+        if pasha == "UUDDLRLRBA" and a == 0:
+            a += 1
+            pygame.mixer.pause()
+            pygame.mixer.Sound('pasha.wav').play(1)
         if pyxel.btnp(pyxel.KEY_SPACE):
             # начало игры
 
             self.start = True
+        elif pyxel.btnp(pyxel.KEY_A):
+            pasha += "A"
         elif pyxel.btnp(pyxel.KEY_O):
             self.start = False
             audnorepeat = 1
@@ -114,15 +124,19 @@ class App:
             self.disable_tool(self.user_x, self.user_y)
         elif pyxel.btnp(pyxel.KEY_LEFT) and self.user_x > 0:
             # передвижение влево
+            pasha += "L"
             self.user_x -= self.cursor_displacement
         elif pyxel.btnp(pyxel.KEY_RIGHT) and self.user_x < self.width - 16:
             # передвижение вправо
+            pasha += "R"
             self.user_x += self.cursor_displacement
         elif pyxel.btnp(pyxel.KEY_UP) and self.user_y > 32:
             # передвижение вверх
+            pasha += "U"
             self.user_y -= self.cursor_displacement
         elif pyxel.btnp(pyxel.KEY_DOWN) and self.user_y < self.height - 16:
             # передвиние вниз
+            pasha += "D"
             self.user_y += self.cursor_displacement
 
         elif pyxel.btnp(pyxel.KEY_U):
@@ -139,6 +153,7 @@ class App:
             # создадние блокировщика
             tools = Tools(self.user_x, self.user_y, "blocker")
             blocker_x, blocker_y, blocker_img = tools.blocker()
+            pasha += "B"
 
             idx, is_tool = self.same_tool_there(blocker_x, blocker_y, self.tools["blocker"])
             if not self.tool_in_tools(blocker_x, blocker_y):
@@ -204,7 +219,8 @@ class App:
                 return True
         return False
 
-    def same_tool_there(self, tool_x, tool_y, tool_list):
+    @staticmethod
+    def same_tool_there(tool_x, tool_y, tool_list):
         # проверка на нахождение того же инструмента, который ставишь
         is_tool = False
         idx = 0
@@ -231,13 +247,13 @@ class App:
                 elif lemmings[i].alive and i not in self.alive:
 
                     self.alive.append(i)
-                elif lemmings[i].alive == False and i not in self.dead:
+                elif not lemmings[i].alive and i not in self.dead:
 
                     self.dead.append(i)
                     if i in self.alive:
                         self.alive.remove(i)
         global audnorepeat
-        if len(self.saved) >= self.lemmings_num - 2:  # победа
+        if len(self.saved) >= self.lemmings_num * 0.65:  # победа
             self.game_over[0] = True
             self.game_over[1] = "win"
             if audnorepeat == 1:
@@ -246,7 +262,7 @@ class App:
                 self.level += 1
                 pygame.mixer.Sound('win.wav').play(0)
 
-        elif len(self.dead) >= self.lemmings_num - 7:  # проигрыш
+        elif len(self.dead) >= self.lemmings_num * 0.35:  # проигрыш
             self.game_over[0] = True
             self.game_over[1] = "lose"
             if audnorepeat == 1:

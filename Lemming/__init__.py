@@ -10,7 +10,7 @@ class Lemming:
         self.y = y
         self.width = 256
         # randint(10, 20)
-        self.lemmings_num = 10
+        self.lemmings_num = 15
         self.blocker_active_idx = []
         self.players = self.create_players()
         self.counter = [0 for i in range(self.lemmings_num)]
