@@ -1,5 +1,5 @@
 import pyxel
-from Board import Gameboard
+from Board_Game import Gameboard
 
 
 class Draw:

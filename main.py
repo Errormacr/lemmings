@@ -2,7 +2,7 @@ import pyxel
 import pygame
 from time import time
 from Lemming import Lemming
-from Board import Gameboard
+from Board_Game import Gameboard
 from Draw import Draw
 from Tools import Tools
 from Scoreboard import Scoreboard

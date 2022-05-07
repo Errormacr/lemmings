@@ -1,4 +1,4 @@
-from Board.Constants import Constants
+from Board_Game.Constants import Constants
 
 
 class Scoreboard:
