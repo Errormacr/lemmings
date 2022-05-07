@@ -1,5 +1,5 @@
 import pyxel
-from Gameboard import Gameboard
+from Board import Gameboard
 
 
 class Draw:
@@ -108,10 +108,11 @@ class Draw:
         if len(tools["blocker"]) > 0:
             for i in range(len(tools["blocker"])):
                 player_with_i = False
+                if tools["blocker"][i][0] != -32:
 
-                for player in players:
-                    if player.blocker_idx == i:
-                        player_with_i = True
+                    for player in players:
+                        if player.blocker_idx == i:
+                            player_with_i = True
 
                 if not player_with_i:
                     pyxel.blt(tools["blocker"][i][0],

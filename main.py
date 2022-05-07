@@ -2,7 +2,7 @@ import pyxel
 import pygame
 from time import time
 from Lemming import Lemming
-from Gameboard import Gameboard
+from Board import Gameboard
 from Draw import Draw
 from Tools import Tools
 from Scoreboard import Scoreboard
@@ -88,6 +88,7 @@ class App:
         elif pyxel.btnp(pyxel.KEY_O):
             self.start = False
             audnorepeat = 1
+            a = 0
             pygame.mixer.pause()
             pygame.mixer.Sound('fon.wav').play(0)
             self.game_over[0] = False
@@ -185,7 +186,7 @@ class App:
         for blocker in self.tools["blocker"]:
             # если блокировщик
             if blocker[0] == tool_x and blocker[1] == tool_y:
-                self.tools["blocker"].remove([tool_x, tool_y, (0, 0, 16, 16, 16, 0)])
+                blocker[0] = -32
         for right_s in self.tools["right_s"]:
 
             # если правая лестница
