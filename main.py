@@ -43,7 +43,7 @@ class App:
         # курсор игрока и инструменты
         self.user_x = 0
         self.user_y = self.scoreboard.height
-        self.cursor_displacement = self.cell_size
+        self.diplace_for_tools = self.cell_size
         self.tools = {
             "umbrella": [],
             "blocker": [],
@@ -102,7 +102,7 @@ class App:
             # лемминги
             self.user_x = 0
             self.user_y = self.scoreboard.height
-            self.cursor_displacement = self.cell_size
+            self.diplace_for_tools = self.cell_size
             self.tools = {
                 "umbrella": [],
                 "blocker": [],
@@ -126,19 +126,19 @@ class App:
         elif pyxel.btnp(pyxel.KEY_LEFT) and self.user_x > 0:
             # передвижение влево
             pasha += "L"
-            self.user_x -= self.cursor_displacement
+            self.user_x -= self.diplace_for_tools
         elif pyxel.btnp(pyxel.KEY_RIGHT) and self.user_x < self.width - 16:
             # передвижение вправо
             pasha += "R"
-            self.user_x += self.cursor_displacement
+            self.user_x += self.diplace_for_tools
         elif pyxel.btnp(pyxel.KEY_UP) and self.user_y > 32:
             # передвижение вверх
             pasha += "U"
-            self.user_y -= self.cursor_displacement
+            self.user_y -= self.diplace_for_tools
         elif pyxel.btnp(pyxel.KEY_DOWN) and self.user_y < self.height - 16:
             # передвиние вниз
             pasha += "D"
-            self.user_y += self.cursor_displacement
+            self.user_y += self.diplace_for_tools
 
         elif pyxel.btnp(pyxel.KEY_U):
             # создание зонтика
