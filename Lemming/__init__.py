@@ -30,12 +30,12 @@ class Lemming:
 
     def update_player(self, tools):  #
 
+        players_to_remove = []
+
         umbrellas = tools["umbrella"]
         blockers = tools["blocker"]
         right_stairs = tools["right_s"]
         left_stairs = tools["left_s"]
-
-        players_to_remove = []
 
         for i in range(len(self.players[:])):
             if (self.players[i].alive and
@@ -119,6 +119,18 @@ class Lemming:
 
         return self.players
 
+    def hit_platform_by_side(self, player):
+        is_hitting_platform = False
+
+        for platform in self.platforms:
+            x_equal = player.x == platform.x or (player.x == platform.x + platform.width - 16)
+            y_equal = player.y - 16 == platform.y
+
+            if x_equal and y_equal:
+                is_hitting_platform = True
+
+        return is_hitting_platform
+
     def is_falling(self, player):
 
         for platform in self.platforms:
@@ -136,18 +148,6 @@ class Lemming:
             return False
         else:
             return True
-
-    def hit_platform_by_side(self, player):
-        is_hitting_platform = False
-
-        for platform in self.platforms:
-            x_equal = player.x == platform.x or (player.x == platform.x + platform.width - 16)
-            y_equal = player.y - 16 == platform.y
-
-            if x_equal and y_equal:
-                is_hitting_platform = True
-
-        return is_hitting_platform
 
     @staticmethod
     def is_touching_tool(player, tool):

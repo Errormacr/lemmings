@@ -6,10 +6,8 @@ class Scoreboard:
                  stairs: int = 0, umbrellas: int = 0, blockers: int = 0):
         self.constants = Constants()
 
-        self.x = 0
         self.y = 0
-        self.width = self.constants.scoreboard_width
-        self.height = self.constants.scoreboard_height
+        self.x = 0
         self.level = f"Level: {level}"
         self.lose = f"Lose: {lose}"
         self.alive = f"Alive: {alive}"
@@ -18,6 +16,8 @@ class Scoreboard:
         self.ladders = f"Stairs: {stairs}"
         self.umbrellas = f"Umbrellas: {umbrellas}"
         self.blockers = f"Blockers: {blockers}"
+        self.width = self.constants.scoreboard_width
+        self.height = self.constants.scoreboard_height
 
     @property
     def x(self):
@@ -40,3 +40,7 @@ class Scoreboard:
             self.__y = 0
         else:
             self.__y = y
+
+    @y.setter
+    def y(self, value):
+        self._y = value

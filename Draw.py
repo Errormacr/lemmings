@@ -7,17 +7,17 @@ class Draw:
         self.gameboard = Gameboard()
         self.constants = self.gameboard.Constants
 
-        self.width = self.constants.width
-        self.height = self.constants.height
-        self.cell_size = self.constants.cell_size
-        self.grid_columns = self.constants.grid_columns
-
         self.BLACK = 0
         self.DARK_BLUE = 1
         self.BROWN = 4
         self.WHITE = 7
         self.GREEN = 11
         self.BLUE = 12
+
+        self.width = self.constants.width
+        self.height = self.constants.height
+        self.cell_size = self.constants.cell_size
+        self.grid_columns = self.constants.grid_columns
 
         self.platforms = platforms
         self.entry_gate = entry_gate
@@ -27,8 +27,8 @@ class Draw:
 
         pyxel.cls(5)
 
-        scoreboard_text_color = 7
         scoreboard_bg_color = 1
+        scoreboard_text_color = 7
         pyxel.rect(scoreboard.x, scoreboard.y,
                    scoreboard.width, scoreboard.height,
                    scoreboard_bg_color)
@@ -42,11 +42,11 @@ class Draw:
         pyxel.text(scoreboard.width / 5, first_row_height,
                    scoreboard.lose, scoreboard_text_color)
 
-        pyxel.text(scoreboard.width / 2, first_row_height,
-                   scoreboard.alive, scoreboard_text_color)
-
         pyxel.text(scoreboard.width / 1.5, first_row_height,
                    scoreboard.saved, scoreboard_text_color)
+
+        pyxel.text(scoreboard.width / 2, first_row_height,
+                   scoreboard.alive, scoreboard_text_color)
 
         pyxel.text(scoreboard.width - 40, first_row_height,
                    scoreboard.dead, scoreboard_text_color)

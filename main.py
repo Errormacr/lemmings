@@ -41,8 +41,8 @@ class App:
                                                       self.entry_gate.row_index, exit_gate=True)
 
         # курсор игрока и инструменты
-        self.user_x = 0
-        self.user_y = self.scoreboard.height
+        self.cursor_x = 0
+        self.cursor_y = self.scoreboard.height
         self.diplace_for_tools = self.cell_size
         self.tools = {
             "umbrella": [],
@@ -100,8 +100,8 @@ class App:
                                                           self.entry_gate.row_index, exit_gate=True)
 
             # лемминги
-            self.user_x = 0
-            self.user_y = self.scoreboard.height
+            self.cursor_x = 0
+            self.cursor_y = self.scoreboard.height
             self.diplace_for_tools = self.cell_size
             self.tools = {
                 "umbrella": [],
@@ -122,53 +122,50 @@ class App:
 
         elif pyxel.btnp(pyxel.KEY_Z):
             # удаление интсрумента
-            self.disable_tool(self.user_x, self.user_y)
-        elif pyxel.btnp(pyxel.KEY_LEFT) and self.user_x > 0:
+            self.disable_tool(self.cursor_x, self.cursor_y)
+        elif pyxel.btnp(pyxel.KEY_LEFT) and self.cursor_x > 0:
             # передвижение влево
             pasha += "L"
-            self.user_x -= self.diplace_for_tools
-        elif pyxel.btnp(pyxel.KEY_RIGHT) and self.user_x < self.width - 16:
+            self.cursor_x -= self.diplace_for_tools
+        elif pyxel.btnp(pyxel.KEY_RIGHT) and self.cursor_x < self.width - 16:
             # передвижение вправо
             pasha += "R"
-            self.user_x += self.diplace_for_tools
-        elif pyxel.btnp(pyxel.KEY_UP) and self.user_y > 32:
+            self.cursor_x += self.diplace_for_tools
+        elif pyxel.btnp(pyxel.KEY_UP) and self.cursor_y > 32:
             # передвижение вверх
             pasha += "U"
-            self.user_y -= self.diplace_for_tools
-        elif pyxel.btnp(pyxel.KEY_DOWN) and self.user_y < self.height - 16:
+            self.cursor_y -= self.diplace_for_tools
+        elif pyxel.btnp(pyxel.KEY_DOWN) and self.cursor_y < self.height - 16:
             # передвиние вниз
             pasha += "D"
-            self.user_y += self.diplace_for_tools
+            self.cursor_y += self.diplace_for_tools
 
         elif pyxel.btnp(pyxel.KEY_U):
             # создание зонтика
-            tools = Tools(self.user_x, self.user_y, "umbrella")
+            tools = Tools(self.cursor_x, self.cursor_y, "umbrella")
             umbrella_x, umbrella_y, umbrella_img = tools.umbrella()
-
-            idx, is_tool = self.same_tool_there(umbrella_x, umbrella_y, self.tools["umbrella"])
 
             if not self.tool_in_tools(umbrella_x, umbrella_y):
                 self.tools["umbrella"].append([umbrella_x, umbrella_y, umbrella_img])
 
         elif pyxel.btnp(pyxel.KEY_B):
             # создадние блокировщика
-            tools = Tools(self.user_x, self.user_y, "blocker")
+            tools = Tools(self.cursor_x, self.cursor_y, "blocker")
             blocker_x, blocker_y, blocker_img = tools.blocker()
             pasha += "B"
 
-            idx, is_tool = self.same_tool_there(blocker_x, blocker_y, self.tools["blocker"])
             if not self.tool_in_tools(blocker_x, blocker_y):
                 self.tools["blocker"].append([blocker_x, blocker_y, blocker_img])
         elif pyxel.btnp(pyxel.KEY_R):
             # создание правой лестницы
-            tools = Tools(self.user_x, self.user_y, "right_stair")
+            tools = Tools(self.cursor_x, self.cursor_y, "right_stair")
             right_s_x, right_s_y, right_s_right, right_s_img = tools.right_stair()
 
             if not self.tool_in_tools(right_s_x, right_s_y):
                 self.tools["right_s"].append([right_s_x, right_s_y, right_s_right, right_s_img])
         elif pyxel.btnp(pyxel.KEY_L):
             # создание левой лестницы
-            tools = Tools(self.user_x, self.user_y, "left_stair")
+            tools = Tools(self.cursor_x, self.cursor_y, "left_stair")
             left_s_x, left_s_y, left_s_left, left_s_img = tools.left_stair()
 
             if not self.tool_in_tools(left_s_x, left_s_y):
@@ -284,13 +281,13 @@ class App:
 
         if self.start and self.game_over[0]:  # игра не начата
             self.Draw.draw_game(self.scoreboard, self.Lemming.before_start(),
-                                self.user_x, self.user_y, self.tools, self.start, self.game_over[1])
+                                self.cursor_x, self.cursor_y, self.tools, self.start, self.game_over[1])
         elif self.start:  # игра начата
             self.Draw.draw_game(self.scoreboard, lemmings,
-                                self.user_x, self.user_y, self.tools, self.start)
+                                self.cursor_x, self.cursor_y, self.tools, self.start)
         else:
             self.Draw.draw_game(self.scoreboard, self.Lemming.before_start(),
-                                self.user_x, self.user_y, self.tools, self.start)
+                                self.cursor_x, self.cursor_y, self.tools, self.start)
 
 
 App()
