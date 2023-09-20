@@ -12,7 +12,7 @@ class Platforms:
         self.height = self.Constants.cell_size
         self.cell_size = self.Constants.cell_size
 
-        # Значение рвов
+        # Значение строк и столбцов
         self.grid_rows = self.Constants.grid_rows
         self.grid_columns = self.Constants.grid_columns
 
